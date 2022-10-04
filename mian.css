@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
+html {
+    font-family: 'Silkscreen', cursive;
+
+}
+body {
+    background-image: url("/micheal.jpeg");
+    background-position: center;
+    background-size: 200px;
+    color:black;
+}
+
+lolrip {
+    font-size: 75px;
+    color: black;
+}
+
+button, input::placeholder {
+    font-family: 'Silkscreen', cursive;
+}
+
+input {
+    border: 2px solid black;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+button {
+    border: 2px solid black;
+    padding: 12px 20px;
+    margin: 8px 0;
+}
+
+.over {
+    grid-template-columns: auto auto auto;
+    display: grid;
+    gap: 10px 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.under {
+    height: auto;
+    width: 100%;
+    text-align: center;
+}
+.under1 {
+    position: center;
+    margin: 30px 30px;
+    width: 50%;
+    text-align: center;
+}
+
+.help {
+    background: white;
+    padding: 20px 20px 20px;
+}
+
+.in {
+    width: 80%;
+    height: auto;
+}
+
+.answer {
+    visibility: hidden;
+}
+
+.itsBritneyBitch {
+    visibility: hidden;
+    position: absolute;
+    pointer-events: none;
+}

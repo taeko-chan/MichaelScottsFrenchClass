@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- <script src="mian.js" type="text/javascript"></script> -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <link rel="stylesheet" href="mian.css">
+        <meta charset="UTF-8">
+        <title>just dance, gonna be okay</title>
+    </head>
+    <body style="">
+    <button onclick="JavaScript:cheat()" style="visibility: hidden">cheat (don't you dare)</button>
+        <div class="itsBritneyBitch" id="msc">
+            <video autoplay loop muted id="mscv">
+                <source src="ms.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="over">
+            <div class="help">
+                <lolrip>Michael Scott's French Class</lolrip>
+            </div>
+            <div class="help">
+                <lolrip>"It's Britney, bitch!"</lolrip>
+                <h2>- Michael Scott</h2>
+            </div>
+        </div>
+        <center>
+            <div class="under1">
+                <div class="help">
+                    <p>Gib die Französische übersetzung für das folgende Begriff ein.</p>
+                    <h2 id="word">click "Weiter" to start</h2>
+                    <input class="in" placeholder="Antwort eingeben" id="ix">
+                    <button onclick="JavaScript:checkWord()">Prüfen</button>
+                    <h2 style="color:red;" id="false" class="answer">Falsch!</h2>
+                    <h3 style="color:red;" id="exp" class="answer">Hidden</h3>
+                    <h2 style="color:green;" id="correct" class="answer">Richtig!</h2>
+                    <button onclick="JavaScript:getWord()" id="mainbt">Starten</button>
+                </div>
+            </div>
+        </center>
+    </body>
+    <script>
+        /*
+
+    Hey sali du, hüüt isch franzprüefig, hesch voci glärnt?
+
+    */
+
+        // ordered answer, question (a.k.a. French, English
+        let voci = [
+            "une pétasse", "bitch",
+            "salut", "hey sali du",
+            "la gare", "bahnhof",
+            "michael scott", "regional manager",
+            "midnight", "threat level",
+            "un version", "eine fassung",
+            "d'occasion", "gebraucht",
+            "faire une ordonnance à qn", "jdm. ein rezept ausstellen",
+            "un/une inuit", "ein/eine Inuit",
+            "une relation", "eine beziehung",
+            "une façon", "eine art/eine weise",
+            "la panache", "mut",
+            "un voleur", "dieb"
+        ];
+
+        let currentIndex;
+        let informCorrect = document.getElementById("correct");
+        let informFalse = document.getElementById("false");
+        let currentWord = document.getElementById("word");
+        let itsBritneyBitchVideo = document.getElementById("msc");
+        let informWhyFalse = document.getElementById("exp");
+        let mainButton = document.getElementById("mainbt");
+
+        let i = 0
+
+        function getWord() {
+            if (voci.length == 0) {
+                console.log(voci)
+                currentWord.innerHTML = "You solved all the words! Reload the page to begin again"
+                itsBritneyBitchVideo.style.visibility = "visible"
+                document.getElementById("mscv").muted = false;
+            } else {
+                console.log(voci)
+                document.getElementById("ix").value = "";
+                informCorrect.style.visibility = "hidden"
+                informFalse.style.visibility = "hidden"
+                informWhyFalse.style.visibility = "hidden"
+
+                let x = Math.floor(Math.random() * voci.length) - 1
+                if (x < 0) {
+                    x = 0
+                }
+                if (x % 2 == 0) {
+                    x += 1
+                }
+
+                let word = voci[x]
+                currentWord.innerHTML = "> " + word + " <"
+                console.log("Word: " + word + ", Sol: " + voci[x - 1])
+                currentIndex = x
+            }
+        }
+
+        function checkWord() {
+            let input = document.getElementById("ix").value;
+            console.log(input)
+            console.log(voci[currentIndex-1])
+            if (input.toLowerCase() === voci[currentIndex-1]) {
+                console.log("c")
+                informCorrect.style.visibility = "visible"
+
+                console.log(voci[currentIndex] + " was correctly solved as " + voci[currentIndex - 1] + ", indexes " + currentIndex + ", " + (currentIndex + 1))
+                voci.splice(currentIndex, 1)
+                voci.splice(currentIndex - 1, 1)
+            } else if (input.toLowerCase() === "tricher") {
+                cheat()
+            } else {
+                console.log("f")
+                informFalse.style.visibility = "visible"
+                informWhyFalse.innerHTML = "Richtig wäre \"" + voci[currentIndex - 1] + "\" gewesen!"
+                informWhyFalse.style.visibility = "visible"
+            }
+        }
+
+        function cheat() {
+            voci = []
+            document.getElementById("mscv").src = "ohgod.mp4"
+            getWord()
+            currentWord.innerHTML = "Cheating is not ok your location has been sent to the nearest police station"
+        }
+
+    </script>
+</html>
